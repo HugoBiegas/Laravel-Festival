@@ -1,0 +1,360 @@
+/*Les boutons */
+
+.buttonRetour{
+background-color: #184cff;
+border: none;
+color: rgb(255, 255, 255);
+padding: 10px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+margin: 4px 2px;
+border-radius: 20%;
+}
+.buttonRetour:hover{
+color: #000;
+}
+
+.buttonAttri{
+background-color: #184cff;
+border: none;
+color: rgb(255, 255, 255);
+padding: 5px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+margin: 4px 2px;
+border-radius: 20%;
+}
+.buttonRetour:hover{
+color: #000;
+}
+
+.buttonCréa{
+background-color: #c22222;
+border: none;
+color: rgb(255, 255, 255);
+padding: 20px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+margin: 4px 2px;
+border-radius: 20%;
+}
+.buttonCréa:hover{
+color: #000;
+}
+.buttonCréa2{
+   background-color: #50b422;
+   border: none;
+   color: rgb(255, 255, 255);
+   padding: 20px;
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+   font-size: 16px;
+   margin: 4px 2px;
+   border-radius: 20%;
+   }
+   .buttonCréa2:hover{
+   color: #000;
+   }
+
+.buttonTab {   /*permet d'avoir le style des bouton */
+   background-color: #04AA6D;
+   border: none;
+   color: white;
+   padding: 20px;
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+   font-size: 16px;
+   margin: 4px 2px;
+   border-radius: 50%;
+}
+.button:hover{
+   color: #000;
+}
+
+/* Style de base pour la page (couleur fond : ocre, couleur texte : noir) */
+.basePage 
+{
+
+   color:black;
+   font:11px Arial, Helvetica, sans-serif;
+}
+
+input[type="checkbox"][readonly] {
+  pointer-events: none;
+}
+/* Style pour le titre (couleur du texte : rouge) */
+.titre 
+{
+
+   color:#F50033;
+   font:30px Arial, Helvetica, sans-serif;
+   text-align:center;
+}
+
+/* Style pour le texte de 2ème niveau du titre */
+.texteNiveau2
+{
+   font:20px Arial, Helvetica, sans-serif;
+}
+
+/* Style pour le texte de la page d'accueil (couleur : bleu foncé avec mise en
+gras et en italique) */
+.texteAccueil
+{
+
+   color:#FFFFFF;       
+   font:2em Georgia, "Times New Roman", Times, serif;
+   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.textArianne
+{
+
+   color:#FFFFFF;       
+   font:14px Georgia, "Times New Roman", Times, serif;
+   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.textAttri
+{
+
+   color:#FFFFFF;       
+   font:3em Georgia, "Times New Roman", Times, serif;
+   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+/* Style pour le texte dans les différentes balises citées */
+td,tr 
+{
+   text-align: left;
+   font:11px Arial, Helvetica, sans-serif;
+}
+
+/* STYLES POUR LES MENUS */
+
+/* Style du tableau contenant les éléments de menu : fond bleu ciel, épaisseur 
+1px, espacement de 3x entre la bordure gauche de chaque cellule et le texte et
+texte centré */
+
+/* Style pour les éléments du menu (mise en gras et italique) */ 
+.menu
+{
+   font:11px Georgia, "Times New Roman", Times, serif;
+   font-weight:bold;
+   font-style:italic;
+   text-align:left;
+}
+
+/* STYLES POUR LES TABLEAUX QUADRILLÉS */
+
+.content-table 
+{
+   border-radius: 5px 5px 0 0;
+   overflow: hidden;
+   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+ 
+.content-table thead tr
+{
+   height:35px;
+   font:18px Georgia, "Times New Roman", Times, serif;
+   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+   text-align:center;
+   background-color: #9F2B00;
+   color: #ffffff;
+} 
+
+.content-table td 
+{
+   background-color:#ffffff;
+   height:30px;
+   text-align:left;
+   color:#000;       
+   font:20px Georgia, "Times New Roman", Times, serif;
+   padding-left:3px;
+} 
+
+.content-table tbody tr{
+   border-bottom: 1px solid #dddddd;
+}
+
+.content-table tbody tr:nth-of-type(even)
+{
+   background-color: #000;
+} 
+
+.content-equipe 
+{
+   border-radius: 5px 5px 0 0;
+   overflow: hidden;
+   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+ 
+.content-equipe thead tr
+{
+   height:35px;
+   font:18px Georgia, "Times New Roman", Times, serif;
+   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+   text-align:center;
+   background-color: #9F2B00;
+   color: #ffffff;
+} 
+
+.content-equipe td 
+{
+   background-color:#ffffff;
+   height:30px;
+   text-align:center;
+   color:#000;       
+   font:20px Georgia, "Times New Roman", Times, serif;
+   padding-left:3px;
+} 
+
+.content-equipe tbody tr{
+   border-bottom: 1px solid #d6d6d6;
+}
+
+.content-equipe tbody tr:nth-of-type(even)
+{
+   background-color: #000;
+} 
+
+.content-attri 
+{
+   border-radius: 5px 5px 0 0;
+   overflow: hidden;
+   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+ 
+.content-attri thead tr
+{
+   height:35px;
+   font:18px Georgia, "Times New Roman", Times, serif;
+   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+   text-align:center;
+   background-color: #9F2B00;
+   color: #ffffff;
+
+} 
+
+.content-attri td 
+{
+   background-color:#ffffff;
+   height:30px;
+   text-align:center;
+   color:#000;       
+   font:20px Georgia, "Times New Roman", Times, serif;
+   padding-left:3px;
+  border-right: solid 1px #d6d6d6; 
+  border-left: solid 1px #d6d6d6;
+} 
+
+.content-attri tbody tr{
+   border-bottom: 1px solid #d6d6d6;
+}
+
+/* STYLE POUR LES MESSAGES D'ERREUR AFFICHÉS EN BAS DE PAGE (FOND : OCRE, 
+COULEUR DU TEXTE : ROSE) */
+
+.msgErreur
+{
+   color:red;
+   font:14px Georgia, "Times New Roman", Times, serif;
+   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+/* STYLES POUR LES ATTRIBUTIONS */
+
+/* Fond blanc */
+td.reserveSiLien
+{
+   
+   background-color:#FFFFFF;
+   color:black;
+   color:#FFFFFF;       
+   font:14px Georgia, "Times New Roman", Times, serif;
+   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+/* Fond parme */
+td.reserve
+{
+   background-color:#FFBEFF;
+   color:black;
+   color:#FFFFFF;       
+   font:14px Georgia, "Times New Roman", Times, serif;
+   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.containing {
+   width: 80%;
+   margin: 0 auto;
+}
+
+header {
+   background: #FFBE7C;
+
+}
+
+header::after {
+   content: '';
+   display: table;
+   clear: both;
+   width: 200%;
+}
+
+.logo {
+
+     width: 21%;
+   float: left;
+}
+
+nav{
+   float: right;
+}
+
+nav ul{
+   margin: 0;
+   padding: 0;
+   list-style: none;
+}
+
+nav li {
+   display: inline-block;
+   margin-left: 70px;
+   padding-top: 30px;
+   position: relative;
+}
+
+nav a {
+   color: #444;
+   text-decoration: none;
+   text-transform: uppercase;
+   font-size: 14px;
+}
+
+nav a:hover {
+   color: #000;
+}
+
+nav a::before{
+   content: '';
+   display: block;
+   height: 5px;
+   background-color: #444;
+   position: absolute;
+   top: 0;
+   width: 0%;
+   transition: all ease-in-out 250ms;
+}
+
+nav a:hover::before{
+   width: 100%;
+}
