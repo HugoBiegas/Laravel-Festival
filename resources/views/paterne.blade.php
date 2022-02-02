@@ -21,8 +21,8 @@
       <img src="images/lettre2.png" alt="" class="logo">
       <nav>
          <ul>
-            <li><a href="index.php">Accueil</a></li>
-            <li><a href="gestionEquipe.php">
+            <li><a href="{{route('index')}}">Accueil</a></li>
+            <li><a href="{{route('equipe.index')}}">
             Gestion d'équipes</a></li>
             <li><a href="listeEtablissements.php">
             Gestion établissements</a></li>
