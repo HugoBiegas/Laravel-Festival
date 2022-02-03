@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateControlesTable extends Migration
+class CreateAttributionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateControlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('controles', function (Blueprint $table) {
+        Schema::create('attributions', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignId('equipe_id')->constrained()->onDelete('cascade');
+            $table->foreignId('etablissement_id')->constrained()->onDelete('cascade');
+            $table->integer('nombreChambres');
         });
     }
 
@@ -26,6 +28,6 @@ class CreateControlesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('controles');
+        Schema::dropIfExists('attributions');
     }
 }

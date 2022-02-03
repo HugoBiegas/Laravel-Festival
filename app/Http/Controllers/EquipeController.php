@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Equipe;
 use Illuminate\Http\Request;
 
 class EquipeController extends Controller
@@ -13,7 +14,17 @@ class EquipeController extends Controller
      */
     public function index()
     {
-        return view('festival.equipe.index');
+        $search = $request['search'] ?? "";
+        if($search != "")
+        {
+            $equipes = Equipe::where('nom','LIKE',"%$search%")->orWhere('adresseElectronique','LIKE',"%$search%")->get();
+        }
+        else
+        {
+            $equipes = Equipe::orderBy('nom')->get();
+        }
+            return view('festival.equipe.index', compact('equipes'));
+        
     }
 
     /**
@@ -23,7 +34,7 @@ class EquipeController extends Controller
      */
     public function create()
     {
-        //
+        return view('festival.equipe.create');
     }
 
     /**

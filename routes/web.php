@@ -20,5 +20,5 @@ Route::get('/', function() {
 
 Route::resources([
     'equipe' => EquipeController::class,
-    'etablissement' => EtablissementController::class,
+    'etablissement' => EtablissementController::class
 ]);
