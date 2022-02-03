@@ -45,7 +45,22 @@ class EquipeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nom'=> 'required',
+            'adressePostale'=> 'required',
+        ]);
+
+        $equipe = new Equipe;
+        $equipe->nom = $request->nom;
+        $equipe->indentiteResponsable = $request->indentiteResponsable;
+        $equipe->adressePostale = $request->adressePostale;
+        $equipe->nombrePersonnes = $request->nombrePersonnes;
+        $equipe->nomPays = $request->nomPays;
+        $equipe->stand = $request->stand;
+
+        $equipe->save();
+
+        return redirect('/equipe/')->with('status','La création a été effectué');
     }
 
     /**

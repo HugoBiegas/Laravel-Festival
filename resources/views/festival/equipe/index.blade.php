@@ -15,10 +15,16 @@
 </head>
 <body>
 
-   <p align='center'><a class='buttonCréa' href="{{ url('/equipe/create') }}">
+   <p align='center'><a class='buttonCréa' href="{{ route('equipe.create') }}">
    Créer une équipe</a></p>
 <h4 class='textArianne' align='center'>Le symbole * indique que l'on ne peux pas le supprimer car il a déjà des chambres d'attribuées<h4>
 
+      @if (session('status'))
+      <div class="alert alert-success">
+          <br>
+          <h4 align="center">{{ session('status') }}</h4>
+      </div>
+      @endif
       <table width='70%' cellspacing='0' cellpadding='0' align='center' 
       class='content-equipe'>
 
@@ -42,10 +48,10 @@
             @if($equipe->nombrePersonnes == 0)
             @else
                @if($equipe->nombrePersonnes == 1)
-                     <td>solo ({{ $equipe->nombrePersonnes }}  personne) </td><td><a href='detailEquipe.php?id=$id' class='buttonTab'>Détail</a>&nbsp&nbsp&nbsp</td>
+                     <td>solo ({{ $equipe->nombrePersonnes }}  personne) </td><td><a href="{{ route('equipe.create') }}" class='buttonTab'>Détail</a>&nbsp&nbsp&nbsp</td>
                @else 
                @if($equipe->nombrePersonnes > 1)
-                     <td>Équipe ({{ $equipe->nombrePersonnes }} personnes)</td><td> <a href='detailEquipe.php?id=$id' class='buttonTab'>Détail</a>&nbsp</td>
+                     <td>Équipe ({{ $equipe->nombrePersonnes }} personnes)</td><td> <a href="{{ route('equipe.create') }}" class='buttonTab'>Détail</a>&nbsp</td>
             @endif
             @endif
             @endif

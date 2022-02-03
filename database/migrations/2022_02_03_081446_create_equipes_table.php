@@ -20,7 +20,7 @@ class CreateEquipesTable extends Migration
             $table->string('adressePostale');
             $table->integer('nombrePersonnes');
             $table->string('nomPays');
-            $table->string('hebergement');
+            $table->string('hebergement')->default('O');
             $table->boolean('stand');
         });
     }
