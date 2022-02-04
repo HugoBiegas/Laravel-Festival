@@ -29,8 +29,8 @@
       
             </tr>
             <tr class="ligneTabNonQuad">
-               <td> {{ Form::label('indentiteResponsable','Nom de la ligue: ') }} </td>
-               <td>{{ Form::text('indentiteResponsable', '', ['class' => 'form-control']) }}</td>
+               <td> {{ Form::label('identiteResponsable','Nom de la ligue: ') }} </td>
+               <td>{{ Form::text('identiteResponsable', '', ['class' => 'form-control']) }}</td>
             </tr>
             <tr class="ligneTabNonQuad">
                <td> {{ Form::label('adressePostale','Code postal:  ') }} </td>

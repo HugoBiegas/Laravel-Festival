@@ -48,10 +48,10 @@
             @if($equipe->nombrePersonnes == 0)
             @else
                @if($equipe->nombrePersonnes == 1)
-                     <td>solo ({{ $equipe->nombrePersonnes }}  personne) </td><td><a href="{{ route('equipe.create') }}" class='buttonTab'>Détail</a>&nbsp&nbsp&nbsp</td>
+                     <td>Solo ({{ $equipe->nombrePersonnes }}  personne) </td><td><a href="{{ route('equipe.show', $equipe->id) }}" class='buttonTab'>Détail</a>&nbsp&nbsp&nbsp</td>
                @else 
                @if($equipe->nombrePersonnes > 1)
-                     <td>Équipe ({{ $equipe->nombrePersonnes }} personnes)</td><td> <a href="{{ route('equipe.create') }}" class='buttonTab'>Détail</a>&nbsp</td>
+                     <td>Équipe ({{ $equipe->nombrePersonnes }} personnes)</td><td> <a href="{{ route('equipe.show', $equipe->id) }}" class='buttonTab'>Détail</a>&nbsp</td>
             @endif
             @endif
             @endif
@@ -61,9 +61,17 @@
 		@else
 				<td>&#x274C</td>
 		@endif
-		<td><a class='buttonTab' href='modificationEquipe.php?action=demanderModifEqu&amp;id=$id'>Modifier</a> / 
+		<td><a class='buttonTab' href="{{ route('equipe.edit', $equipe->id) }}">Modifier</a> / 
          &nbsp
-<a class='buttonTab' href='suppressionEquipe.php?action=demanderSupprEqu&amp;id=$id'>Supprimer</a></td>
+
+         @foreach($attributions as $attribution)
+         @endforeach
+
+            @if($attributions->contains('equipe_id', $equipe->id))
+             *     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            @else
+               <a class='buttonTab' href='suppressionEquipe.php?action=demanderSupprEqu&amp;id=$id'>Supprimer</a></td>
+            @endif
 @endforeach
 </body>
 </html>

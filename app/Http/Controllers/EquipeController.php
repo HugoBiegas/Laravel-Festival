@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Equipe;
+use App\Models\Attribution;
 use Illuminate\Http\Request;
 
 class EquipeController extends Controller
@@ -14,6 +15,7 @@ class EquipeController extends Controller
      */
     public function index()
     {
+        $attributions = Attribution::all();
         $search = $request['search'] ?? "";
         if($search != "")
         {
@@ -23,7 +25,7 @@ class EquipeController extends Controller
         {
             $equipes = Equipe::orderBy('nom')->get();
         }
-            return view('festival.equipe.index', compact('equipes'));
+            return view('festival.equipe.index', compact('equipes', "attributions"));
         
     }
 
@@ -52,7 +54,7 @@ class EquipeController extends Controller
 
         $equipe = new Equipe;
         $equipe->nom = $request->nom;
-        $equipe->indentiteResponsable = $request->indentiteResponsable;
+        $equipe->identiteResponsable = $request->identiteResponsable;
         $equipe->adressePostale = $request->adressePostale;
         $equipe->nombrePersonnes = $request->nombrePersonnes;
         $equipe->nomPays = $request->nomPays;
@@ -60,7 +62,7 @@ class EquipeController extends Controller
 
         $equipe->save();
 
-        return redirect('/equipe/')->with('status','La création a été effectué');
+        return redirect('equipe/')->with('status','La création a été effectué');
     }
 
     /**
@@ -71,7 +73,8 @@ class EquipeController extends Controller
      */
     public function show($id)
     {
-        //
+        $equipe = Equipe::findOrFail($id);
+        return view('festival.equipe.show', compact('equipe'));
     }
 
     /**
@@ -82,7 +85,8 @@ class EquipeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $equipe = Equipe::findOrFail($id);
+        return view('festival.equipe.edit', compact('equipe'));
     }
 
     /**
@@ -94,7 +98,13 @@ class EquipeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $equipe = Equipe::findOrFail($id);
+        $request->validate([
+            'nom'=> 'required',
+            'adressePostale'=> 'required',
+        ]);
+        $equipe->update($request->input());
+        return redirect('equipe/')->with('status','La modification a été effectué');
     }
 
     /**

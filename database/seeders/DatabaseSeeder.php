@@ -17,23 +17,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         \App\Models\Equipe::factory(10)->create();
-        \App\Models\Etablissement::factory(10)->create();
-        Attribution::create([
-            'etablissement_id' => 1,
-            'equipe_id' => 2,
-            'nombreChambres' => 1
-        ]);
-
-        Attribution::create([
-            'etablissement_id' => 2,
-            'equipe_id' => 2,
-            'nombreChambres' => 1
-        ]);
-
-        Attribution::create([
-            'etablissement_id' => 3,
-            'equipe_id' => 1,
-            'nombreChambres' => 1
-        ]);
+        \App\Models\Etablissement::factory(4)->create();
+        \App\Models\Attribution::factory(5)->create();
+        
     }
 }

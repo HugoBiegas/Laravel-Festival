@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Attribution;
 use Illuminate\Http\Request;
+use App\Models\Etablissement;
 
 class EtablissementController extends Controller
 {
@@ -13,9 +15,11 @@ class EtablissementController extends Controller
      */
     public function index()
     {
-        //
+        $etablissements = Etablissement::orderBy('nom')->get();
+        $attributions = Attribution::all();
+        return view('festival.etablissement.index', compact('etablissements', 'attributions'));
+        $req="SELECT * From Attribution where idEtab='$id'";
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -45,7 +49,8 @@ class EtablissementController extends Controller
      */
     public function show($id)
     {
-        //
+        $etablissement = Etablissement::findOrFail($id);
+        return view('festival.etablissement.show', compact('etablissement'));
     }
 
     /**

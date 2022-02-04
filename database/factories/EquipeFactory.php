@@ -15,9 +15,9 @@ class EquipeFactory extends Factory
     {
         return [
             'nom' => $this->faker->lastName(),
-            'indentiteResponsable' => $this->faker->lastName(),
+            'identiteResponsable' => $this->faker->lastName(),
             'adressePostale' => $this->faker->address(),
-            'nombrePersonnes' => 5,
+            'nombrePersonnes' => $this->faker->numberBetween($min = 1, $max = 20),
             'nomPays' => $this->faker->country(),
             'hebergement' => 'O',
             'stand' => 1,

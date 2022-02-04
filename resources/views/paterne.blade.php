@@ -8,25 +8,25 @@
 <title>Festival @yield('titre')</title>
 <meta http-equiv="Content-Language" content="fr">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link href="../css/cssGeneral.css" rel="stylesheet" type="text/css">
+<link href="../../css/cssGeneral.css" rel="stylesheet" type="text/css">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="../css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="../css/fond.css">
+<link rel="stylesheet" href="../../css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="../../css/fond.css">
 </head>
 <body class="basePage">
 <!--  Liste contenant les menus -->
 <header>
    <div class="containing">
       <a href="{{route('index')}}">
-         <img src="../images/lettre2.png" alt="" class="logo">
+         <img src="../../images/lettre2.png" alt="" class="logo">
       </a>
       <nav>
          <ul>
             <li><a href="{{route('index')}}">Accueil</a></li>
             <li><a href="{{route('equipe.index')}}">
             Gestion d'équipes</a></li>
-            <li><a href="listeEtablissements.php">
+            <li><a href="{{route('etablissement.index')}}">
             Gestion établissements</a></li>
             <li><a href="consultationAttributions.php">
             Attributions chambres</a></li>
@@ -36,6 +36,6 @@
 </header>
 
    <script src="https://unpkg.com/@popperjs/core@2.4.0/dist/umd/popper.min.js"></script>
-   <script src="../js/bootstrap.js"></script>
+   <script src="../../js/bootstrap.js"></script>
    @yield('content')
 </body>
