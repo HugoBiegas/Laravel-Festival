@@ -27,7 +27,12 @@ class EtablissementController extends Controller
      */
     public function create()
     {
-        //
+        $civiliteResponsable=array(
+            "M.",
+            "Mme ",
+            "Melle ",
+        );
+        return view('festival.etablissement.create')->with('civiliteResponsable', $civiliteResponsable);
     }
 
     /**
@@ -38,7 +43,31 @@ class EtablissementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nom'=> 'required',
+            'adresseRue'=> 'required',
+            'codePostal'=> 'required',
+            'ville'=> 'required',
+            'telephone'=> 'required',
+            'adresseElectronique'=> 'required',
+            'nomResponsable'=> 'required',
+        ]);
+
+        $etablissement = new Etablissement;
+        $etablissement->nom = $request->nom;
+        $etablissement->adresseRue = $request->adresseRue;
+        $etablissement->codePostal = $request->codePostal;
+        $etablissement->ville = $request->ville;
+        $etablissement->telephone = $request->telephone;
+        $etablissement->adresseElectronique = $request->adresseElectronique;
+        $etablissement->type = $request->type;
+        $etablissement->civiliteResponsable = $request->civiliteResponsable;
+        $etablissement->nomResponsable = $request->nomResponsable;
+        $etablissement->prenomResponsable = $request->prenomResponsable;
+        $etablissement->nombreChambresOffertes = $request->nombreChambresOffertes;
+        $etablissement->save();
+
+        return redirect('etablissement/')->with('status','La création a été effectué');
     }
 
     /**
@@ -61,7 +90,13 @@ class EtablissementController extends Controller
      */
     public function edit($id)
     {
-        //
+        $etablissement = Etablissement::findOrFail($id);
+        $civiliteResponsable=array(
+            "M.",
+            "Mme ",
+            "Melle ",
+        );
+        return view('festival.etablissement.edit', compact('etablissement', 'civiliteResponsable'));
     }
 
     /**
@@ -73,7 +108,18 @@ class EtablissementController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $etablissement = Etablissement::findOrFail($id);
+        $request->validate([
+            'nom'=> 'required',
+            'adresseRue'=> 'required',
+            'codePostal'=> 'required',
+            'ville'=> 'required',
+            'telephone'=> 'required',
+            'adresseElectronique'=> 'required',
+            'nomResponsable'=> 'required',
+        ]);
+        $etablissement->update($request->input());
+        return redirect('etablissement/')->with('status','La modification a été effectué');
     }
 
     /**

@@ -22,3 +22,5 @@ Route::resources([
     'equipe' => EquipeController::class,
     'etablissement' => EtablissementController::class
 ]);
+
+Route::get('attribution/', [AttributionController::class])->name('attribution.index');

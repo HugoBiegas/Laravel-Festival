@@ -8,8 +8,14 @@
 
 <p align='center' class='textArianne'><a  href = "{{route('index')}}"> Accueil </a> -> Liste des Etablissements</p>
 <br> 
-   <p align='center'><a class='buttonCréa' href="{{ route('equipe.create') }}">
+   <p align='center'><a class='buttonCréa' href="{{ route('etablissement.create') }}">
    Créer un etablissement</a></p>
+   @if (session('status'))
+   <div class="alert alert-success">
+       <br>
+       <h4 align="center">{{ session('status') }}</h4>
+   </div>
+   @endif
 <table width='70%' cellspacing='0' cellpadding='0' align='center' 
 class='content-table'>
    <thead>
@@ -34,7 +40,7 @@ class='content-table'>
          @endforeach
 
             @if($attributions->contains('etablissement_id', $etablissement->id))
-               <td width='16%'>{{$attribution->nombreChambres}} / {{$etablissement->nombreChambresOffertes}} Attributions</td>
+               <td width='16%'>{{ $attribution->sum('nombreChambres') }} / {{$etablissement->nombreChambresOffertes}} Attributions</td>
                @else
                <td width='16%' align='center'> 
                   <a class='buttonTab' href='suppressionEtablissement.php?action=demanderSupprEtab&amp;id=$id'>

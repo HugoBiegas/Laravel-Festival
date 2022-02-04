@@ -3,133 +3,49 @@
 @section('titre', '- Etablissements')
 
 @section('content')
+<br><p align='center' class='textArianne'><a  href ="{{route('index')}}"> Accueil </a> -> <a href ="{{route('etablissement.index')}}" >
+Liste des établissements </a> -> Modification d'un établissement</p> <br>
 
-@include("festival/_controlesEtGestionErreurs")
-@include("festival/_gestionBase")
-<?php
-      $connexion = new PDO("mysql:host=localhost;dbname=festival", "festival", "secret");
-
-
-echo "<br><p align='center' class='textArianne'><a  href = 'index.php'> Accueil </a> -> <a href = 'listeEtablissements.php'>
-Liste des établissements </a> -> Modification d'un établissement</p> <br> ";
-
-
-// MODIFIER UN ÉTABLISSEMENT 
-
-// Déclaration du tableau des civilités
-$tabCivilite=array("M.","Mme","Melle");  
-
-$action=$_REQUEST['action'];
-$id=$_REQUEST['id'];
-
-// Si on ne "vient" pas de ce formulaire, il faut récupérer les données à partir 
-// de la base (en appelant la fonction obtenirDetailEtablissement) sinon on 
-// affiche les valeurs précédemment contenues dans le formulaire
-if ($action=='demanderModifEtab')
-{
-   $lgEtab=obtenirDetailEtablissement($connexion, $id);
-   foreach ($lgEtab as $row) {
-      $nom=$row['nom'];
-      $adresseRue=$row['adresseRue'];
-      $codePostal=$row['codePostal'];
-      $ville=$row['ville'];
-      $tel=$row['tel'];
-      $adresseElectronique=$row['adresseElectronique'];
-      $type=$row['type'];
-      $civiliteResponsable=$row['civiliteResponsable'];
-      $nomResponsable=$row['nomResponsable'];
-      $prenomResponsable=$row['prenomResponsable'];
-      $nombreChambresOffertes=$row['nombreChambresOffertes'];
-   }
-}
-else
-{
-   $nom=$_REQUEST['nom']; 
-   $adresseRue=$_REQUEST['adresseRue'];
-   $codePostal=$_REQUEST['codePostal'];
-   $ville=$_REQUEST['ville'];
-   $tel=$_REQUEST['tel'];
-   $adresseElectronique=$_REQUEST['adresseElectronique'];
-   $type=$_REQUEST['type'];
-   $civiliteResponsable=$_REQUEST['civiliteResponsable'];
-   $nomResponsable=$_REQUEST['nomResponsable'];
-   $prenomResponsable=$_REQUEST['prenomResponsable'];
-   $nombreChambresOffertes=$_REQUEST['nombreChambresOffertes'];
-
-   verifierDonneesEtabM($connexion, $id, $nom, $adresseRue, $codePostal, $ville,  
-                        $tel, $nomResponsable, $nombreChambresOffertes);      
-   if (nbErreurs()==0)
-   {        
-      modifierEtablissement($connexion, $id, $nom, $adresseRue, $codePostal, $ville, 
-                            $tel, $adresseElectronique, $type, $civiliteResponsable, 
-                            $nomResponsable, $prenomResponsable, $nombreChambresOffertes);
-   }
-}
-
-echo "
-<form method='GET' action='modificationEtablissement.php?action=validerModifEtab'>
-   <input type='hidden' value='validerModifEtab' name='action'>
+{!! Form::model($etablissement, ['method' =>'PUT', 'route'=>['etablissement.update', $etablissement->id]]) !!}
    <table width='85%' cellspacing='0' cellpadding='0' align='center' 
    class='content-table'>
    
       <thead>
       <tr>
-         <th colspan='3'>".$nom."(".$id.")</th>
+         <th colspan='3'>{{$etablissement->nom}}({{$etablissement->id}})</th>
       </tr>
       </thead>
       <tr>
-         <th><input type='hidden' value=".$id." name='id'></th>
-      </tr>";
-      
-      echo '
-      <tr>
          <td> Nom*: </td>
-         <td><input type="text" value="'.$nom.'" name="nom" size="50" 
-         maxlength="45"></td>
+         <td>{{ Form::text('nom', old('nom'), ['class' => 'form-control']) }}</td>
       </tr>
       <tr>
          <td> Adresse*: </td>
-         <td><input type="text" value="'.$adresseRue.'" name="adresseRue" 
-         size="50" maxlength="45"></td>
+         <td>{{ Form::text('adresseRue', old('adresseRue'), ['class' => 'form-control']) }}</td>
       </tr>
       <tr>
          <td> Code postal*: </td>
-         <td><input type="text" value="'.$codePostal.'" name="codePostal" 
-         size="4" maxlength="5"></td>
+         <td>{{ Form::number('codePostal', old('codePostal'), ['class' => 'form-control']) }}</td>
       </tr>
       <tr>
          <td> Ville*: </td>
-         <td><input type="text" value="'.$ville.'" name="ville" size="40" 
-         maxlength="35"></td>
+         <td>{{ Form::text('ville', old('ville'), ['class' => 'form-control']) }}</td>
       </tr>
       <tr>
          <td> Téléphone*: </td>
-         <td><input type="text" value="'.$tel.'" name="tel" size ="20" 
-         maxlength="10"></td>
+         <td>{{ Form::number('telephone', old('telephone'), ['class' => 'form-control']) }}</td>
       </tr>
       <tr>
          <td> E-mail: </td>
-         <td><input type="text" value="'.$adresseElectronique.'" name=
-         "adresseElectronique" size ="75" maxlength="70"></td>
+         <td>{{ Form::email('adresseElectronique', old('adresseElectronique'), ['class' => 'form-control']) }}</td>
       </tr>
       <tr>
          <td> Type*: </td>
-         <td>';
-            if ($type==1)
-            {
-               echo " 
-               <input type='radio' name='type' value='1' checked>  
-               Etablissement Scolaire
-               <input type='radio' name='type' value='0'>  Autre";
-             }
-             else
-             {
-                echo " 
-                <input type='radio' name='type' value='1'> 
-                Etablissement Scolaire
-                <input type='radio' name='type' value='0' checked> Autre";
-              }
-           echo "
+         <td>
+           {{ Form::label('type','Etablissement Scolaire ') }}
+           {{ Form::radio('type','1', old('stand'))}}
+           {{ Form::label('type','Autre ') }}
+           {{ Form::radio('type', '0', old('stand'))}}
            </td>
          </tr>
          <tr class='ligneTabNonQuad'>
@@ -137,60 +53,28 @@ echo "
          </tr>
          <tr class='ligneTabNonQuad'>
             <td> Civilité*: </td>
-            <td> <select name='civiliteResponsable'>";
-               for ($i=0; $i<3; $i=$i+1)
-                  if ($tabCivilite[$i]==$civiliteResponsable) 
-                  {
-                     echo "<option selected>$tabCivilite[$i]</option>";
-                  }
-                  else
-                  {
-                     echo "<option>$tabCivilite[$i]</option>";
-                  }
-               echo '
-               </select>&nbsp; &nbsp; &nbsp; Nom*: 
-               <input type="text" value="'.$nomResponsable.'" name=
-               "nomResponsable" size="26" maxlength="25">
+            <td> {{ Form::select('civiliteResponsable', $civiliteResponsable,$etablissement->civiliteResponsable) }}
+               Nom*: 
+               {{ Form::text('nomResponsable', old('nomResponsable'), ['class' => 'form-control']) }}
                &nbsp; &nbsp; &nbsp; Prénom: 
-               <input type="text"  value="'.$prenomResponsable.'" name=
-               "prenomResponsable" size="26" maxlength="25">
+               {{ Form::text('prenomResponsable', old('prenomResponsable'), ['class' => 'form-control']) }}
             </td>
          </tr>
          <tr>
             <td> Nombre chambres offertes*: </td>
-            <td><input type="text" value="'.$nombreChambresOffertes.'" name=
-            "nombreChambresOffertes" size ="2" maxlength="3"></td>
+            <td>{{ Form::number('nombreChambresOffertes', old('nombreChambresOffertes'), ['class' => 'form-control']) }}</td>
          </tr>
       <tr>
          <td align="right">
          </td>
-         <td align="left"><input class="buttonTab" type="submit" value="Valider" name="valider"><input class="buttonCréa" type="reset" value="Annuler" name="annuler">
+         <td align="left">{{Form::submit('Valider', ['class' => 'buttonTab'])}}<input class="buttonCréa" type="reset" value="Annuler" name="annuler">
          </td>
       </tr>
       <tr>
-         <td colspan="2" align="center"><a class="buttonRetour" href="listeEtablissements.php">Retour</a>
+         <td colspan="2" align="center"><a class="buttonRetour" href="{{url()->previous()}}">Retour</a>
          </td>
       </tr>
-   </table>';
-   
-   echo "
-  
-</form>";
+   </table>
 
-// En cas de validation du formulaire : affichage des erreurs ou du message de 
-// confirmation
-if ($action=='validerModifEtab')
-{
-   if (nbErreurs()!=0)
-   {
-      afficherErreurs();
-   }
-   else
-   {
-      echo "
-      <h5><center><strong>La modification de l'établissement a été effectuée</strong></center></h5>";
-   }
-}
-
-?>
+{!!Form::close()!!}
 @endsection

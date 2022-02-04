@@ -28,7 +28,7 @@
             Gestion d'équipes</a></li>
             <li><a href="{{route('etablissement.index')}}">
             Gestion établissements</a></li>
-            <li><a href="consultationAttributions.php">
+            <li><a href="{{route('attribution.index')}}">
             Attributions chambres</a></li>
          </ul>
       </nav>
