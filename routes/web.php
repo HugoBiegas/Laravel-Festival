@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\EquipeController;
-use App\Http\Controllers\EtablissementController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EquipeController;
+use App\Http\Controllers\AttributionController;
+use App\Http\Controllers\EtablissementController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,4 +24,5 @@ Route::resources([
     'etablissement' => EtablissementController::class
 ]);
 
-Route::get('attribution/', [AttributionController::class])->name('attribution.index');
+
+Route::get('/attribution', [AttributionController::class, 'index'])->name('attribution.index');
