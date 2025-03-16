@@ -1,66 +1,110 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Projet Laravel-Festival
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Description
+Application web développée avec Laravel permettant la gestion d'un festival, notamment l'organisation des équipes participantes et leur hébergement dans différents établissements.
 
-## About Laravel
+## Fonctionnalités principales
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Gestion des équipes
+- Création, consultation, modification d'équipes participantes
+- Informations gérées : nom, identité du responsable, adresse postale, nombre de personnes, pays d'origine, stand
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Gestion des établissements
+- Création, consultation, modification d'établissements d'hébergement
+- Informations gérées : nom, adresse, code postal, ville, téléphone, email, type d'établissement, responsable, nombre de chambres offertes
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Gestion des attributions
+- Association entre équipes et établissements d'hébergement
+- Vue dédiée pour la gestion des attributions
 
-## Learning Laravel
+## Architecture technique
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Structure MVC (Modèle-Vue-Contrôleur)
+- **Modèles** : Equipe, Etablissement, Attribution, User
+- **Contrôleurs** : EquipeController, EtablissementController, AttributionController
+- **Vues** : Situées dans resources/views/festival/
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Relations entre les modèles
+- Relation many-to-many entre Equipe et Etablissement
+- Modèle Attribution pour la table pivot
 
-## Laravel Sponsors
+### Base de données
+- Migrations pour la création des tables
+- Factories pour générer des données de test
+- Seeders pour l'initialisation des données
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### Sécurité
+- Middleware d'authentification
+- Protection CSRF
+- Validation des données
 
-### Premium Partners
+## Installation
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-- **[Romega Software](https://romegasoftware.com)**
+1. Cloner le dépôt
+```bash
+git clone [url-du-dépôt]
+cd Laravel-Festival
+```
 
-## Contributing
+2. Installer les dépendances
+```bash
+composer install
+npm install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+3. Configurer l'environnement
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-## Code of Conduct
+4. Configurer la base de données dans le fichier .env
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=festival
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+5. Exécuter les migrations et seeders
+```bash
+php artisan migrate
+php artisan db:seed
+```
 
-## Security Vulnerabilities
+6. Lancer le serveur de développement
+```bash
+php artisan serve
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+7. Accéder à l'application
+```
+http://localhost:8000
+```
 
-## License
+## Développement
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Structure des dossiers principaux
+- app/Models/ : Définition des modèles
+- app/Http/Controllers/ : Logique des contrôleurs
+- app/Providers/ : Fournisseurs de services Laravel
+- database/migrations/ : Migrations de base de données
+- database/factories/ : Factories pour les tests
+- database/seeders/ : Initialisation des données
+- routes/ : Définition des routes (web.php, api.php)
+- resources/views/ : Templates Blade
+- public/ : Ressources accessibles publiquement
+
+### Routes principales
+- /equipe : Gestion des équipes
+- /etablissement : Gestion des établissements
+- /attribution : Gestion des attributions
+
+## Bonnes pratiques implémentées
+- Validation des données dans les contrôleurs
+- Utilisation des relations Eloquent
+- Protection contre les failles CSRF
+- Architecture respectant les principes SOLID
+- Code organisé selon les standards PSR
